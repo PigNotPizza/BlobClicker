@@ -1,7 +1,6 @@
 ﻿# 🍃BlobClicker
 A pretty simple game, click on "+", earn blobs and upgrade!
 
-Written in Rust using Druid UI crate.
 ## 💎 Requirements
 - Rust if you want to launch the sourse code.
 - Windows 10+/Linux(not tested though)
