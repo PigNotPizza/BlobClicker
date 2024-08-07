@@ -107,7 +107,7 @@ fn ui_builder() -> impl Widget<BlobData> {
         .with_font(FontDescriptor::new(FontFamily::MONOSPACE).with_weight(FontWeight::BOLD));
     let small_blob_button = Button::new("Small blob egg").on_click(|ctx, data: &mut BlobData, _env| buy_small_egg(ctx, data, "Small blob", 500, 1, 2));
     let big_blob_button = Button::new("Big blob egg").on_click(|ctx, data: &mut BlobData, _env| buy_big_egg(ctx, data, "Big blob", 2500, 3, 5));
-    let smallbirdcostlabel = Label::new("  $1950 Blobs ")
+    let smallbirdcostlabel = Label::new("  $950 Blobs ")
         .with_text_size(32.5)
         .with_text_color(Color::rgb8(194, 245, 164))
         .with_font(FontDescriptor::new(FontFamily::MONOSPACE).with_weight(FontWeight::BOLD));
