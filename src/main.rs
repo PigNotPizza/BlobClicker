@@ -7,7 +7,6 @@ use druid::{
 };
 use rand::Rng;
 
-
 #[derive(Clone, Data, Lens)]
 struct BlobData {
     num: i32,
@@ -28,7 +27,7 @@ fn pop_up(data: &mut BlobData) {
 
 fn increment(data: &mut BlobData) {
     if data.pet_multiplier != 1 {
-        data.num += data.press_num * (data.pet_multiplier-1);
+        data.num += data.press_num * (data.pet_multiplier - 1);
     } else {
         data.num += data.press_num;
     }
@@ -68,18 +67,18 @@ fn buy_big_egg(ctx: &mut EventCtx, data: &mut BlobData, name: &str, price: i32, 
         ctx.new_window(popup_window);
     }
 }
+
 fn guide_button(ctx: &mut EventCtx, data: &mut BlobData) {
-    
-    
     data.popup_open = true;
-    data.popup_message = format!("Pets\n\n Each pet has a unique multiplier, which increases your click multiplier.\n Each row has a unique theme that it's pets follow!\n\n\nUpgrade \n\n Upgrade increases the click multiplier by 2 and increases the cost of it by 8.");
+    data.popup_message = format!(
+        "Pets\n\n Each pet has a unique multiplier, which increases your click multiplier.\n Each row has a unique theme that its pets follow!\n\n\nUpgrade \n\n Upgrade increases the click multiplier by 2 and increases the cost of it by 8."
+    );
     let popup_window = WindowDesc::new(popup_ui_builder())
         .title("Guide")
         .window_size((1000.0, 300.0))
         .resizable(false);
 
     ctx.new_window(popup_window);
-    
 }
 
 fn ui_builder() -> impl Widget<BlobData> {
@@ -97,46 +96,66 @@ fn ui_builder() -> impl Widget<BlobData> {
         .with_text_size(32.5)
         .with_text_color(Color::rgb8(250, 227, 225))
         .with_font(FontDescriptor::new(FontFamily::MONOSPACE).with_weight(FontWeight::BOLD));
-    let smallblobcostlabel = Label::new("  $500 Blobs")
+    // Blob theme
+    let smallblobcostlabel = Label::new("$500 Blobs")
         .with_text_size(32.5)
         .with_text_color(Color::rgb8(194, 245, 164))
         .with_font(FontDescriptor::new(FontFamily::MONOSPACE).with_weight(FontWeight::BOLD));
-    let bigblobcostlabel = Label::new("      $2500 Blobs")
+    let bigblobcostlabel = Label::new("$2500 Blobs")
         .with_text_size(32.5)
         .with_text_color(Color::rgb8(194, 245, 164))
         .with_font(FontDescriptor::new(FontFamily::MONOSPACE).with_weight(FontWeight::BOLD));
     let small_blob_button = Button::new("Small blob egg").on_click(|ctx, data: &mut BlobData, _env| buy_small_egg(ctx, data, "Small blob", 500, 1, 2));
     let big_blob_button = Button::new("Big blob egg").on_click(|ctx, data: &mut BlobData, _env| buy_big_egg(ctx, data, "Big blob", 2500, 3, 5));
-    let smallbirdcostlabel = Label::new("  $950 Blobs ")
+    // Home pets theme
+    let smallbirdcostlabel = Label::new("$950 Blobs ")
         .with_text_size(32.5)
         .with_text_color(Color::rgb8(194, 245, 164))
         .with_font(FontDescriptor::new(FontFamily::MONOSPACE).with_weight(FontWeight::BOLD));
-    let smalldogcostlabel = Label::new("      $1650 Blobs ")
+    let smalldogcostlabel = Label::new("$1650 Blobs ")
         .with_text_size(32.5)
         .with_text_color(Color::rgb8(194, 245, 164))
         .with_font(FontDescriptor::new(FontFamily::MONOSPACE).with_weight(FontWeight::BOLD));
-    let bigcatcostlabel = Label::new("     $3750 Blobs")
+    let bigcatcostlabel = Label::new("$3750 Blobs")
         .with_text_size(32.5)
         .with_text_color(Color::rgb8(194, 245, 164))
         .with_font(FontDescriptor::new(FontFamily::MONOSPACE).with_weight(FontWeight::BOLD));
-    let small_bird_button = Button::new("Small bird egg").on_click(|ctx, data: &mut BlobData, _env| buy_small_egg(ctx, data, "Small bird", 950, 3, 4));
-    let small_dog_button = Button::new("Small dog egg").on_click(|ctx, data: &mut BlobData, _env| buy_small_egg(ctx, data, "Small dog", 1650, 2, 4));
+
+    let small_bird_button = Button::new("Small bird egg").on_click(|ctx, data: &mut BlobData, _env| buy_small_egg(ctx, data, "Small bird", 950, 2, 4));
+    let small_dog_button = Button::new("Small dog egg").on_click(|ctx, data: &mut BlobData, _env| buy_small_egg(ctx, data, "Small dog", 1650, 3, 4));
     let big_cat_button = Button::new("Big cat egg").on_click(|ctx, data: &mut BlobData, _env| buy_big_egg(ctx, data, "Big cat", 3750, 5, 8));
-    let guide_button = Button::new("Guide").on_click(|ctx, data: &mut BlobData, _env| guide_button(ctx, data));
-    
+    // Jungle theme
+    let smallmonkeycostlabel = Label::new("$3250 Blobs ")
+        .with_text_size(32.5)
+        .with_text_color(Color::rgb8(194, 245, 164))
+        .with_font(FontDescriptor::new(FontFamily::MONOSPACE).with_weight(FontWeight::BOLD));
+    let smallparrotcostlabel = Label::new("$4500 Blobs ")
+        .with_text_size(32.5)
+        .with_text_color(Color::rgb8(194, 245, 164))
+        .with_font(FontDescriptor::new(FontFamily::MONOSPACE).with_weight(FontWeight::BOLD));
+    let bigtigercostlabel = Label::new("$5750 Blobs")
+        .with_text_size(32.5)
+        .with_text_color(Color::rgb8(194, 245, 164))
+        .with_font(FontDescriptor::new(FontFamily::MONOSPACE).with_weight(FontWeight::BOLD));
+
+    let small_monkey_button = Button::new("Small monkey egg").on_click(|ctx, data: &mut BlobData, _env| buy_small_egg(ctx, data, "Small monkey", 3250, 5, 7));
+    let small_parrot_button = Button::new("Small parrot egg").on_click(|ctx, data: &mut BlobData, _env| buy_small_egg(ctx, data, "Small parrot", 4500, 7, 10));
+    let big_tiger_button = Button::new("Big tiger egg").on_click(|ctx, data: &mut BlobData, _env| buy_big_egg(ctx, data, "Big tiger", 5750, 9, 12));
+    let guide_btn = Button::new("Guide").on_click(|ctx, data: &mut BlobData, _env| guide_button(ctx, data));
 
     Flex::column()
         .with_child(label)
         .with_child(Flex::row().with_child(increment_button))
         .with_child(upgrade_button)
-        .with_spacer(20.0)
         .with_child(egg_label)
         .with_child(Flex::row().with_child(small_blob_button).with_child(big_blob_button))
-        .with_child(Flex::row().with_child(smallblobcostlabel).with_child(bigblobcostlabel))
+        .with_child(Flex::row().with_spacer(20.0).with_child(smallblobcostlabel).with_spacer(40.0).with_child(bigblobcostlabel))
         .with_child(Flex::row().with_child(small_bird_button).with_child(small_dog_button).with_child(big_cat_button))
-        .with_child(Flex::row().with_child(smallbirdcostlabel).with_child(smalldogcostlabel).with_child(bigcatcostlabel))
-        .with_spacer(360.0)
-        .with_child(guide_button)
+        .with_child(Flex::row().with_spacer(80.0).with_child(smallbirdcostlabel).with_spacer(50.0).with_child(smalldogcostlabel).with_spacer(30.0).with_child(bigcatcostlabel).with_spacer(65.0))
+        .with_child(Flex::row().with_child(small_monkey_button).with_child(small_parrot_button).with_child(big_tiger_button))
+        .with_child(Flex::row().with_spacer(20.0).with_child(smallmonkeycostlabel).with_spacer(60.0).with_child(smallparrotcostlabel).with_spacer(40.0).with_child(bigtigercostlabel).with_spacer(10.00))
+        .with_spacer(20.0)
+        .with_child(guide_btn)
 }
 
 fn popup_ui_builder() -> impl Widget<BlobData> {
@@ -153,7 +172,6 @@ fn popup_ui_builder() -> impl Widget<BlobData> {
             ctx.window().close();
         }))
 }
-
 
 fn main() {
     let main_window = WindowDesc::new(ui_builder())
