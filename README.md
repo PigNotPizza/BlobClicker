@@ -1,5 +1,5 @@
 ﻿# 🍃BlobClicker
-A pretty simple game, click on "+", earn blobs and upgrade!
+A pretty simple game, click on "+", to earn blobs. Upgrade, buy eggs, progress!!!
 
 ## 🔒Installation
 > Sourse code Rust required
