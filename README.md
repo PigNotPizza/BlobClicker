@@ -1,9 +1,6 @@
 ﻿# 🍃BlobClicker
-A pretty simple game, click on "+", earn blobs and upgrade!
+A pretty simple game, click on "+", to earn blobs. Upgrade, buy eggs, progress!!!
 
-## 💎 Requirements
-- Rust if you want to launch the sourse code.
-- Windows 10+/Linux(not tested though)
 ## 🔒Installation
 > Sourse code Rust required
 - Clone the repository(**CMD/PS/BASH**: **git clone https://github.com/orangemelo/BlobClicker**).
